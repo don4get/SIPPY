@@ -10,6 +10,7 @@ import sys
 from builtins import object
 
 import scipy as sc
+import warnings
 
 from .functionsetSIM import *
 
@@ -53,6 +54,10 @@ def svd_weighted(y, u, f, l, weights='N4SID'):
             sc.linalg.sqrtm(np.dot(np.dot(Yf, PIort_Uf), np.dot(Yf, PIort_Uf).T)).real)
         W2 = 1. * PIort_Uf
     elif weights == 'N4SID':
+        W1 = np.identity(f * l)
+        W2 = np.identity(PIort_Uf[:, 0].size)
+    else:
+        warnings.warn("Weight function name not recognised: N4SID chosen by default.")
         W1 = np.identity(f * l)
         W2 = np.identity(PIort_Uf[:, 0].size)
     U_n, S_n, V_n = np.linalg.svd(np.dot(np.dot(W1, O_i), W2))
