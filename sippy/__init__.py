@@ -135,7 +135,7 @@ def system_identification(y, u, id_method, centering='None', IC='None', \
             A, B, C, D, Vn, Q, R, S, K = OLSims_methods.OLSims(y, u, SS_f, id_method, SS_threshold,
                                                                SS_max_order, SS_fixed_order,
                                                                SS_D_required, SS_A_stability)
-            model = OLSims_methods.SS_model(A, B, C, D, K, Q, R, S, tsample, Vn)
+            model = OLSims_methods.StateSpaceModel(A, B, C, D, K, Q, R, S, tsample, Vn)
         elif id_method == 'PARSIM-K':
             from . import Parsim_methods
             A_K, C, B_K, D, K, A, B, x0, Vn = Parsim_methods.PARSIM_K(y, u, SS_f, SS_p,
@@ -183,7 +183,7 @@ def system_identification(y, u, id_method, centering='None', IC='None', \
             A, B, C, D, Vn, Q, R, S, K = OLSims_methods.select_order_SIM(y, u, SS_f, id_method, IC,
                                                                          SS_orders, SS_D_required,
                                                                          SS_A_stability)
-            model = OLSims_methods.SS_model(A, B, C, D, K, Q, R, S, tsample, Vn)
+            model = OLSims_methods.StateSpaceModel(A, B, C, D, K, Q, R, S, tsample, Vn)
         elif id_method == 'PARSIM-K':
             from . import Parsim_methods
             A_K, C, B_K, D, K, A, B, x0, Vn = Parsim_methods.select_order_PARSIM_K(y, u, SS_f, SS_p,

@@ -23,7 +23,7 @@ def ordinate_sequence(y, f, p):
 
 def PI_PIort(X):
     PI = np.dot(X.T, np.linalg.pinv(X.T))
-    PIort = np.identity((PI[:, 0].size)) - PI
+    PIort = np.identity(PI[:, 0].size) - PI
     return PI, PIort
 
 
@@ -48,11 +48,11 @@ def check_types(threshold, max_order, fixed_order, f, p=20):
     if threshold < 0. or threshold >= 1.:
         print("Error! The threshold value must be >=0. and <1.")
         return False
-    if (np.isnan(max_order)) == False:
+    if (np.isnan(max_order)) is False:
         if type(max_order) != int:
             print("Error! The max_order value must be integer")
             return False
-    if (np.isnan(fixed_order)) == False:
+    if (np.isnan(fixed_order)) is False:
         if type(fixed_order) != int:
             print("Error! The fixed_order value must be integer")
             return False
@@ -66,7 +66,7 @@ def check_types(threshold, max_order, fixed_order, f, p=20):
 
 
 def check_inputs(threshold, max_order, fixed_order, f):
-    if (math.isnan(fixed_order)) == False:
+    if (math.isnan(fixed_order)) is False:
         threshold = 0.0
         max_order = fixed_order
     if f < max_order:
